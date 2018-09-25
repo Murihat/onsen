@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>STUDY CASE ONSEN UI - Basic</title>
+	<link rel="stylesheet" href="OnsenUI/css/onsenui.css">
+	<link rel="stylesheet" href="OnsenUI/css/onsen-css-components.min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+	<script src="OnsenUI/js/onsenui.min.js"></script>
+	<script src="https://unpkg.com/ionicons@4.4.2/dist/ionicons.js"></script>
+	<style type="text/css">
+		.list-item__center{background-image: none !important;}
+	</style>
+</head>
+<body>
+
+<ons-navigator id="appNavigator" swipeable swipe-target-width="80px">
+  <ons-page>
+    <ons-splitter id="appSplitter">
+      <ons-splitter-content page="tabbar.html"></ons-splitter-content>
+    </ons-splitter>
+  </ons-page>
+</ons-navigator>
+
+<template id="tabbar.html">
+  <ons-page id="tabbar-page">
+    <ons-toolbar>
+      <div class="center">Home</div>
+    </ons-toolbar>
+    <ons-tabbar swipeable id="appTabbar" position="auto">
+      <ons-tab label="Home" icon="ion-home" page="home" active></ons-tab>
+      <ons-tab label="News" icon="ion-filing" page="news"></ons-tab>
+      <ons-tab label="Gallery" icon="ion-images" page="gallery"></ons-tab>
+    </ons-tabbar>
+
+    <script>
+      ons.getScriptPage().addEventListener('prechange', function(event) {
+        if (event.target.matches('#appTabbar')) {
+          event.currentTarget.querySelector('ons-toolbar .center').innerHTML = event.tabItem.getAttribute('label');
+        }
+      });
+    </script>
+  </ons-page>
+</template>
+
+
+<template id="home">
+  <ons-page>
+    <p class="intro">
+      This Is A Home Pages.
+    </p>
+
+    <style>
+      .intro {
+        text-align: center;
+        padding: 0 20px;
+        margin-top: 40px;
+      }
+   
+    </style>
+  </ons-page>
+</template>
+
+
+
+<template id="news">
+  <ons-page id="news-page">
+
+    <ons-card>
+      <ons-list-header>Category</ons-list-header>
+      <ons-list-item modifier="chevron longdivider" tappable onclick="ct.pushPage({'id':'all'})">All Category</ons-list-item>     
+      <ons-list-item modifier="chevron longdivider" tappable onclick="ct.pushPage({'id':'category1'})">Cat</ons-list-item>
+      <ons-list-item modifier="chevron longdivider" tappable onclick="ct.pushPage({'id':'category2'})">Bird</ons-list-item>
+      <ons-list-item modifier="chevron longdivider" tappable onclick="ct.pushPage({'id':'category3'})">Rabbit</ons-list-item>
+    </ons-card>
+    <script type="text/javascript">
+      window.ct = {};
+
+      window.ct.pushPage = function (page) {
+          document.getElementById('appNavigator').pushPage(page.id);
+      };
+    </script> 
+    
+  </ons-page>
+</template>
+
+
+<!-- ALL NEWS HERE -->
+<template id="all">
+  <ons-page id="All-News">
+    <ons-toolbar>
+      <div class="left">
+        <ons-back-button>Category</ons-back-button>
+      </div>
+      <div class="center">
+        All News
+      </div>
+    </ons-toolbar>
+    <ons-card onclick="fn.pushPage({'id': 'detail1'})">
+      <ons-list>
+        <ons-list-item tappable style="border-bottom: 1px solid #ccc">
+          <div class="left">
+            <img class="list-item__thumbnail" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgcj2rUTiZKbTUmEGFyfiwuFGHXZ3IUsjnF-CI4-B2COJBKMhq" style="width: 100px; height: 100px; border: 1px solid #ccc; padding: 5px">
+          </div>
+          <div class="center">
+            <span class="list-item__title" style="font-size: 10px; font-weight: bold">Lorem Ipsum is simply dummy </span>
+            <span class="list-item__subtitle" style="font-size: 8px">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable....</span>
+          </div>
+        </ons-list-item>
+      </ons-list>
+    </ons-card>
+    <ons-card onclick="fn.pushPage({'id': 'detail2'})">
+        <ons-list>
+        <ons-list-item tappable style="border-bottom: 1px solid #ccc">
+          <div class="left">
+            <img class="list-item__thumbnail" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpvTQsze-8vTCRF4qWlDoV4h6B6ZMMppJvrR517PzdubIE5gXtXg" style="width: 100px; height: 100px; border: 1px solid #ccc; padding: 5px">
+          </div>
+          <div class="center">
+            <span class="list-item__title" style="font-size: 10px; font-weight: bold">Lorem Ipsum is simply dummy </span>
+            <span class="list-item__subtitle" style="font-size: 8px">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable....</span>
+          </div>
+        </ons-list-item>
+      </ons-list>
+    </ons-card>
+    <ons-card onclick="fn.pushPage({'id': 'detail3'})">
+      <ons-list>
+        <ons-list-item tappable style="border-bottom: 1px solid #ccc">
+          <div class="left">
+            <img class="list-item__thumbnail" src="http://1.bp.blogspot.com/-3mnYnAdlPK4/URp1S9oeNnI/AAAAAAAAAuQ/bdFu3oD-nUk/s1600/lop1.jpg" style="width: 100px; height: 100px; border: 1px solid #ccc; padding: 5px">
+          </div>
+          <div class="center">
+            <span class="list-item__title" style="font-size: 10px; font-weight: bold">Lorem Ipsum is simply dummy </span>
+            <span class="list-item__subtitle" style="font-size: 8px">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable....</span>
+          </div>
+        </ons-list-item>
+      </ons-list>
+    </ons-card>
+
+    <style>
+      .list{background-image: none !important; }
+      .card{padding: 5px}
+    </style>
+    <script type="text/javascript">
+      window.fn = {};
+
+      window.fn.pushPage = function (page) {
+          document.getElementById('appNavigator').pushPage(page.id);
+      };
+    </script>
+  </ons-page>
+</template>
+<!-- END ALL NEWS HERE -->
+
+
+
+<!-- DETAIL NEWS HERE -->
+<template id="detail1">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left">
+        <ons-back-button>News</ons-back-button>
+      </div>
+      <div class="center">
+      	Detail News 1
+      </div>
+    </ons-toolbar>
+
+    <ons-list id="kitten-list">
+      	<ons-card>
+		    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgcj2rUTiZKbTUmEGFyfiwuFGHXZ3IUsjnF-CI4-B2COJBKMhq" alt="Onsen UI" style="width: 100%;">
+		    <div class="title">
+		      <p style="font-size: 14px; font-weight: bold" class="mb-0">
+		      	Lorem Ipsum is simply dummy <br>
+		      	<span style="font-size: 10px">Muhamad Rizal Hidayat | 10-10-2018 | Cat</span>
+		      </p>
+		    </div>
+		    <div class="content">
+		    	<p class="text-justify" style="font-size: 12px">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.</p>  
+		    </div>
+		</ons-card>
+    </ons-list>
+  </ons-page>
+</template>
+
+<template id="detail2">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left">
+        <ons-back-button>News</ons-back-button>
+      </div>
+      <div class="center">
+      	Detail News 2
+      </div>
+    </ons-toolbar>
+
+    <ons-list id="kitten-list">
+     	<ons-card>
+		    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpvTQsze-8vTCRF4qWlDoV4h6B6ZMMppJvrR517PzdubIE5gXtXg" alt="Onsen UI" style="width: 100%;">
+		    <div class="title">
+		      <p style="font-size: 14px; font-weight: bold" class="mb-0">
+		      	Lorem Ipsum is simply dummy <br>
+		      	<span style="font-size: 10px">Muhamad Rizal Hidayat | 10-10-2018 | Bird</span>
+		      </p>
+		    </div>
+		    <div class="content">
+		    	<p class="text-justify" style="font-size: 12px">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.</p>  
+		    </div>
+		</ons-card>
+    </ons-list>
+  </ons-page>
+</template>
+
+<template id="detail3">
+  <ons-page>
+    <ons-toolbar>
+      <div class="left">
+        <ons-back-button>News</ons-back-button>
+      </div>
+      <div class="center">
+      	Detail News 3
+      </div>
+    </ons-toolbar>
+
+    <ons-list id="kitten-list">
+      	<ons-card>
+		    <img src="http://1.bp.blogspot.com/-3mnYnAdlPK4/URp1S9oeNnI/AAAAAAAAAuQ/bdFu3oD-nUk/s1600/lop1.jpg" alt="Onsen UI" style="width: 100%;">
+		    <div class="title">
+		      <p style="font-size: 14px; font-weight: bold" class="mb-0">
+		      	Lorem Ipsum is simply dummy <br>
+		      	<span style="font-size: 10px">Muhamad Rizal Hidayat | 10-10-2018 | Rabbit</span>
+		      </p>
+		    </div>
+		    <div class="content">
+		    	<p class="text-justify" style="font-size: 12px">Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source.</p>  
+		    </div>
+		</ons-card>
+    </ons-list>
+  </ons-page>
+</template>
+<!-- END DETAIL NEWS HERE -->
+
+
+
+<!-- CATEGORY 1 HERE -->
+<template id="category1">
+  <ons-page id="category1">
+    <ons-toolbar>
+      <div class="left">
+        <ons-back-button>Category</ons-back-button>
+      </div>
+      <div class="center">
+        Cat
+      </div>
+    </ons-toolbar>
+    <ons-card onclick="fn.pushPage({'id': 'detail1'})">
+      <ons-list>
+        <ons-list-item tappable style="border-bottom: 1px solid #ccc">
+          <div class="left">
+            <img class="list-item__thumbnail" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSgcj2rUTiZKbTUmEGFyfiwuFGHXZ3IUsjnF-CI4-B2COJBKMhq" style="width: 100px; height: 100px; border: 1px solid #ccc; padding: 5px">
+          </div>
+          <div class="center">
+            <span class="list-item__title" style="font-size: 10px; font-weight: bold">Lorem Ipsum is simply dummy </span>
+            <span class="list-item__subtitle" style="font-size: 8px">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable....</span>
+          </div>
+        </ons-list-item>
+      </ons-list>
+    </ons-card>
+
+    <style>
+      .list{background-image: none !important; }
+      .card{padding: 5px}
+    </style>
+    <script type="text/javascript">
+      window.fn = {};
+
+      window.fn.pushPage = function (page) {
+          document.getElementById('appNavigator').pushPage(page.id);
+      };
+    </script>
+  </ons-page>
+</template>
+<!-- END CATEGORY 1 HERE -->
+
+<!-- CATEGORY 2 HERE -->
+<template id="category2">
+  <ons-page id="category2">
+    <ons-toolbar>
+      <div class="left">
+        <ons-back-button>Category</ons-back-button>
+      </div>
+      <div class="center">
+        Bird
+      </div>
+    </ons-toolbar>
+    <ons-card onclick="fn.pushPage({'id': 'detail2'})">
+      <ons-list>
+        <ons-list-item tappable style="border-bottom: 1px solid #ccc">
+          <div class="left">
+            <img class="list-item__thumbnail" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQpvTQsze-8vTCRF4qWlDoV4h6B6ZMMppJvrR517PzdubIE5gXtXg" style="width: 100px; height: 100px; border: 1px solid #ccc; padding: 5px">
+          </div>
+          <div class="center">
+            <span class="list-item__title" style="font-size: 10px; font-weight: bold">Lorem Ipsum is simply dummy </span>
+            <span class="list-item__subtitle" style="font-size: 8px">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable....</span>
+          </div>
+        </ons-list-item>
+      </ons-list>
+    </ons-card>
+
+    <style>
+      .list{background-image: none !important; }
+      .card{padding: 5px}
+    </style>
+    <script type="text/javascript">
+      window.fn = {};
+
+      window.fn.pushPage = function (page) {
+          document.getElementById('appNavigator').pushPage(page.id);
+      };
+    </script>
+  </ons-page>
+</template>
+<!-- END CATEGORY 2 HERE -->
+
+
+<!-- CATEGORY 3 HERE -->
+<template id="category3">
+  <ons-page id="category3">
+    <ons-toolbar>
+      <div class="left">
+        <ons-back-button>Category</ons-back-button>
+      </div>
+      <div class="center">
+        Rabbit
+      </div>
+    </ons-toolbar>
+    <ons-card onclick="fn.pushPage({'id': 'detail3'})">
+      <ons-list>
+        <ons-list-item tappable style="border-bottom: 1px solid #ccc">
+          <div class="left">
+            <img class="list-item__thumbnail" src="http://1.bp.blogspot.com/-3mnYnAdlPK4/URp1S9oeNnI/AAAAAAAAAuQ/bdFu3oD-nUk/s1600/lop1.jpg" style="width: 100px; height: 100px; border: 1px solid #ccc; padding: 5px">
+          </div>
+          <div class="center">
+            <span class="list-item__title" style="font-size: 10px; font-weight: bold">Lorem Ipsum is simply dummy </span>
+            <span class="list-item__subtitle" style="font-size: 8px">There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable....</span>
+          </div>
+        </ons-list-item>
+      </ons-list>
+    </ons-card>
+
+    <style>
+      .list{background-image: none !important; }
+      .card{padding: 5px}
+    </style>
+    <script type="text/javascript">
+      window.fn = {};
+
+      window.fn.pushPage = function (page) {
+          document.getElementById('appNavigator').pushPage(page.id);
+      };
+    </script>
+  </ons-page>
+</template>
+<!-- END CATEGORY 3 HERE -->
+
+
+<template id="gallery">
+  <ons-page id="gallery-page">
+    <ons-card>
+      <ons-row>
+        <ons-col><img src="http://www.acqueon.com/wp-content/uploads/2017/08/avatar-image.png" class="img-fluid"></ons-col>
+        <ons-col><img src="http://www.acqueon.com/wp-content/uploads/2017/08/avatar-image.png" class="img-fluid"></ons-col>
+        <ons-col><img src="http://www.acqueon.com/wp-content/uploads/2017/08/avatar-image.png" class="img-fluid"></ons-col>
+        <ons-col><img src="http://www.acqueon.com/wp-content/uploads/2017/08/avatar-image.png" class="img-fluid"></ons-col>
+        <ons-col><img src="http://www.acqueon.com/wp-content/uploads/2017/08/avatar-image.png" class="img-fluid"></ons-col>
+      </ons-row>
+    </ons-card>
+    <ons-card>
+      <ons-row>
+        <ons-col><img src="http://www.acqueon.com/wp-content/uploads/2017/08/avatar-image.png" class="img-fluid"></ons-col>
+        <ons-col><img src="http://www.acqueon.com/wp-content/uploads/2017/08/avatar-image.png" class="img-fluid"></ons-col>
+        <ons-col><img src="http://www.acqueon.com/wp-content/uploads/2017/08/avatar-image.png" class="img-fluid"></ons-col>
+        <ons-col><img src="http://www.acqueon.com/wp-content/uploads/2017/08/avatar-image.png" class="img-fluid"></ons-col>
+        <ons-col><img src="http://www.acqueon.com/wp-content/uploads/2017/08/avatar-image.png" class="img-fluid"></ons-col>
+      </ons-row>
+    </ons-card>
+    <ons-card>
+      <ons-row>
+        <ons-col><img src="http://www.acqueon.com/wp-content/uploads/2017/08/avatar-image.png" class="img-fluid"></ons-col>
+        <ons-col><img src="http://www.acqueon.com/wp-content/uploads/2017/08/avatar-image.png" class="img-fluid"></ons-col>
+        <ons-col><img src="http://www.acqueon.com/wp-content/uploads/2017/08/avatar-image.png" class="img-fluid"></ons-col>
+        <ons-col><img src="http://www.acqueon.com/wp-content/uploads/2017/08/avatar-image.png" class="img-fluid"></ons-col>
+        <ons-col><img src="http://www.acqueon.com/wp-content/uploads/2017/08/avatar-image.png" class="img-fluid"></ons-col>
+      </ons-row>
+    </ons-card>
+    <ons-card>
+      <ons-row>
+        <ons-col><img src="http://www.acqueon.com/wp-content/uploads/2017/08/avatar-image.png" class="img-fluid"></ons-col>
+        <ons-col><img src="http://www.acqueon.com/wp-content/uploads/2017/08/avatar-image.png" class="img-fluid"></ons-col>
+        <ons-col><img src="http://www.acqueon.com/wp-content/uploads/2017/08/avatar-image.png" class="img-fluid"></ons-col>
+        <ons-col><img src="http://www.acqueon.com/wp-content/uploads/2017/08/avatar-image.png" class="img-fluid"></ons-col>
+        <ons-col><img src="http://www.acqueon.com/wp-content/uploads/2017/08/avatar-image.png" class="img-fluid"></ons-col>
+      </ons-row>
+    </ons-card>
+    <ons-card>
+      <ons-row>
+        <ons-col><img src="http://www.acqueon.com/wp-content/uploads/2017/08/avatar-image.png" class="img-fluid"></ons-col>
+        <ons-col><img src="http://www.acqueon.com/wp-content/uploads/2017/08/avatar-image.png" class="img-fluid"></ons-col>
+        <ons-col><img src="http://www.acqueon.com/wp-content/uploads/2017/08/avatar-image.png" class="img-fluid"></ons-col>
+        <ons-col><img src="http://www.acqueon.com/wp-content/uploads/2017/08/avatar-image.png" class="img-fluid"></ons-col>
+        <ons-col><img src="http://www.acqueon.com/wp-content/uploads/2017/08/avatar-image.png" class="img-fluid"></ons-col>
+      </ons-row>
+    </ons-card>
+
+
+    <style type="text/css">
+    .card{padding: 5px;}
+    ons-col{margin:2px;}
+    img{border:1px solid #ccc;}
+  </style>
+  </ons-page>
+</template>
+
+
+</body>
+</html>
